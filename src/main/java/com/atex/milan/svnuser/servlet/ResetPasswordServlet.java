@@ -80,6 +80,7 @@ public class ResetPasswordServlet
         if (newPwd == null || newPwd.length() == 0) {
           throw new IllegalArgumentException("Cannot create new password");
         }
+        u.setPassword(newPwd);
         HTPasswdTool htpasswd_tool = new HTPasswdTool(config.getHtpasswdCmd(), config.getPasswd(), u.getLogin(), u.getPassword());
         htpasswd_tool.start();
         htpasswd_tool.waitExecutionEnd();
