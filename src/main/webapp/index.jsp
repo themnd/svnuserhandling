@@ -5,12 +5,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>SVN Users handling</title>
+        <link rel="stylesheet" type="text/css" href="css/global.css">
     </head>
     <body>
-        <h1>SVN Users handling</h1>
-        <ul>
-          <li><a href="users.jsp">Users</a></li>
-        </ul>
+        <%@include file="header.jsp"%>
+        <%@include file="footer.jsp"%>
     </body>
 </html>

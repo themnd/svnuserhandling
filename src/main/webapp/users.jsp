@@ -26,64 +26,41 @@ String resetPwdLink(HttpServletResponse response, String login)
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Users Page</title>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-<script type="text/javascript">
-function processAjax(data, f) {
-  if (data && data.code == 1) {
-    alert("error processing the request: " + data.err);
-  } else {
-    f(data);
-  }
-}
-function doAjax(url, f) {
-  $.getJSON(url, function(data) {
-    processAjax(data, f)
-  });
-}
-function disableUser(u)
-{
-  var url = 'disableuser?login=' + u;
- doAjax(url, function(data) {
-    alert(data.msg);
-    location.reload();
- });
-}
-function enableUser(u)
-{
-  var url = 'enableuser?login=' + u;
-  doAjax(url, function(data) {
-    alert(data.msg);
-    location.reload();
-  });
-}
-function resetUserPwd(u)
-{
-  var url = 'resetpassword?login=' + u;
-  doAjax(url, function(data) {
-    alert(data.msg);
-    location.reload();
-  });
-}
-</script>
+<link rel="stylesheet" type="text/css" href="css/global.css">
+<link rel="stylesheet" type="text/css" href="css/users.css">
+<script type="text/javascript" src="js/jquery-1.3.1.min.js"></script>
+<script type="text/javascript" src="js/users.js"></script>
 </head>
 <body>
+  <%@include file="header.jsp"%>
+  <div class="editing" style="display: none">
+    <form action="#">
+      Old password: <input type="password"><br/>
+      repeat password: <input type="password"><br/>
+    </form>
+  </div>
+  <div class="usersList">
 <h1>Number of users: <%=users.size()%></h1>
-<ul>
+<ul class="users">
 <%
 for (UserInfo u: users) {
-  String msg = "<li>";
-  msg += u.getLogin();
+  String userClass = "user";
+  String msg = "";
+  msg += "<div class=\"login\">" + u.getLogin() + "</div>";
   if (u.isDisabled()) {
-    msg += " - DISABLED " + enableLink(response, u.getLogin());;
+    userClass += " disabled";
+    msg += " " + enableLink(response, u.getLogin());;
   } else {
     msg += " " + disableLink(response, u.getLogin()) + " " + resetPwdLink(response, u.getLogin());
   }
-  msg += "</li>";
+  msg = "<li class=\"" + userClass + "\">" + msg + "</li>";
 %>
 <%=msg%>
 <%
 }
 %>
 </ul>
+  </div>
+<%@include file="footer.jsp"%>
 </body>
 </html>
