@@ -1,0 +1,50 @@
+/* 
+    Document   : users
+    Created on : Jul 9, 2011, 8:14:58 AM
+    Author     : mnova
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.groupsList {
+    font-family: Arial;
+    font-size: 1.2em;
+}
+.members {
+    border-style: dashed;
+    border-width: 1px;
+    font-size: 0.8em;
+    margin-bottom: 15px;
+    margin-top: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    -moz-border-radius: 5px 5px 5px 5px;
+}
+.user {
+    line-height: 1.8em;
+}
+.user .login {
+    display: inline;
+    padding-right: 20px;
+}
+.user .disableLink, .user .resetLink, .user .enableLink {
+    border-style: solid;
+    border-width: 1px;
+    font-size: 1em;
+    font-variant: small-caps;
+    padding: 2px;
+}
+.user.disabled {
+    background-color: silver;
+    color: white;
+}
+.user.disabled .enableLink {
+    color: red;
+}

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.atex.milan.svnuser.users;
 
 /**
@@ -14,7 +10,7 @@ public class UserInfo
   private String password;
   private boolean disabled;
 
-  public void UserInfo()
+  public UserInfo()
   {
     this.disabled = false;
   }

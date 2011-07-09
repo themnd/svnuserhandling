@@ -1,14 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.atex.milan.svnuser.app;
 
-import com.atex.milan.svnuser.utils.parser.PasswdParser;
-import com.atex.milan.svnuser.users.UserInfo;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import com.atex.milan.svnuser.users.AuthInfo;
+import com.atex.milan.svnuser.users.UserInfo;
+import com.atex.milan.svnuser.utils.parser.AuthzParser;
+import com.atex.milan.svnuser.utils.parser.PasswdParser;
 
 /**
  *
@@ -24,7 +23,7 @@ public class SvnApp
   }
 
   protected SvnConfiguration config;
-  protected List<UserInfo> users = null;
+  protected AuthInfo info = null;
 
   public void init(SvnConfiguration config) throws IOException
   {
@@ -34,8 +33,11 @@ public class SvnApp
 
   public void init() throws IOException
   {
-    File f = new File(config.getPasswd());
-    users = PasswdParser.parse(f);
+    File a = new File(config.getAuthz());
+    info = AuthzParser.parse(a);
+    
+    File p = new File(config.getPasswd());
+    info.setUsers(PasswdParser.parse(p));
   }
 
   public void setConfig(SvnConfiguration config)
@@ -48,14 +50,19 @@ public class SvnApp
     return config;
   }
 
-  public List<UserInfo> getUsers()
+  public AuthInfo getInfo()
   {
-    return users;
+    return info;
   }
 
+  public List<UserInfo> getUsers()
+  {
+    return info.getUsers();
+  }
+  
   public UserInfo getUser(String login)
   {
-    for (UserInfo u: users) {
+    for (UserInfo u: getUsers()) {
       String name = u.getLogin();
       if (name == null) {
         continue;
@@ -70,7 +77,7 @@ public class SvnApp
   public void writePasswd() throws IOException
   {
     File f = new File(config.getPasswd());
-    PasswdParser.write(f, users);
+    PasswdParser.write(f, getUsers());
   }
 
 }
