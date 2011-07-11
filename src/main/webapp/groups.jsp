@@ -1,8 +1,3 @@
-<%-- 
-    Document   : groups.jsp
-    Created on : Jul 9, 2011, 9:08:35 AM
-    Author     : mnova
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="com.atex.milan.svnuser.app.SvnApp"%>
