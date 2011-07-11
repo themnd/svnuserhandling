@@ -94,6 +94,7 @@
                     <maxIdleTime>60000</maxIdleTime>
                   </connector>
                 </connectors>
+                <scanIntervalSeconds>2</scanIntervalSeconds>
               </configuration>
             </plugin>
         </plugins>
