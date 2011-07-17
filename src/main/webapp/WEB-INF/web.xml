@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <listener>
+        <listener-class>com.atex.milan.svnuser.servlet.listener.AppContextListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>ResetPasswordServlet</servlet-name>
         <servlet-class>com.atex.milan.svnuser.servlet.ResetPasswordServlet</servlet-class>
-        <init-param>
-            <param-name>toolcmd</param-name>
-            <param-value>/opt/local/bin/pwgen -c -n 8 1</param-value>
-        </init-param>
-        <init-param>
-            <param-name>passwd</param-name>
-            <param-value>/Users/mnova/dev/tests/mvn/conf/passwd</param-value>
-        </init-param>
-        <init-param>
-            <param-name>authz</param-name>
-            <param-value>/Users/mnova/dev/tests/mvn/conf/authz</param-value>
-        </init-param>
-        <init-param>
-            <param-name>htpasswdcmd</param-name>
-            <param-value>/usr/sbin/htpasswd -m </param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>disableuserservlet</servlet-name>

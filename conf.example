@@ -1,0 +1,7 @@
+#
+# Configuration example
+#
+toolcmd=/opt/local/bin/pwgen -c -n 8 1
+passwd=/Users/mnova/dev/tests/mvn/conf/passwd
+authz=/Users/mnova/dev/tests/mvn/conf/authz
+htpasswdcmd=/usr/sbin/htpasswd -m

@@ -1,8 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.atex.milan.svnuser.app;
+
+import java.util.Properties;
 
 /**
  *
@@ -10,12 +8,33 @@ package com.atex.milan.svnuser.app;
  */
 public class SvnConfiguration
 {
+  private static final String AUTHZ_PARAM = "authz";
+  private static final String PASSWD_PARAM = "passwd";
+  private static final String TOOLCMD_PARAM = "toolcmd";
+  private static final String HTPASSWDCMD_PARAM = "htpasswdcmd";
 
   private String pwgenCmd;
   private String htpasswdCmd;
   private String passwd;
   private String authz;
 
+  public SvnConfiguration()
+  {
+  }
+  
+  public SvnConfiguration(Properties properties)
+  {
+    String toolCmd = properties.getProperty(TOOLCMD_PARAM);
+    String passwd = properties.getProperty(PASSWD_PARAM);
+    String authz = properties.getProperty(AUTHZ_PARAM);
+    String htpasswdCmd = properties.getProperty(HTPASSWDCMD_PARAM);
+
+    setPwgenCmd(toolCmd);
+    setAuthz(authz);
+    setPasswd(passwd);
+    setHtpasswdCmd(htpasswdCmd);
+  }
+  
   /**
    * @return the pwgenCmd
    */

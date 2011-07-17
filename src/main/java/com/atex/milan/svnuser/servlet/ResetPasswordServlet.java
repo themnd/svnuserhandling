@@ -3,7 +3,6 @@ package com.atex.milan.svnuser.servlet;
 import java.io.IOException;
 import java.util.logging.Level;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,36 +28,6 @@ public class ResetPasswordServlet
    */
   private static final long serialVersionUID = 1L;
   
-  private static final String AUTHZ_PARAM = "authz";
-  private static final String PASSWD_PARAM = "passwd";
-  private static final String TOOLCMD_PARAM = "toolcmd";
-  private static final String HTPASSWDCMD_PARAM = "htpasswdcmd";
-
-  @Override
-  public void init(ServletConfig config)
-    throws ServletException
-  {
-    super.init(config);
-
-    String toolCmd = config.getInitParameter(TOOLCMD_PARAM);
-    String passwd = config.getInitParameter(PASSWD_PARAM);
-    String authz = config.getInitParameter(AUTHZ_PARAM);
-    String htpasswdCmd = config.getInitParameter(HTPASSWDCMD_PARAM);
-
-    SvnConfiguration svn_config = new SvnConfiguration();
-    svn_config.setPwgenCmd(toolCmd);
-    svn_config.setAuthz(authz);
-    svn_config.setPasswd(passwd);
-    svn_config.setHtpasswdCmd(htpasswdCmd);
-
-    try {
-      SvnApp app = SvnApp.getInstance();
-      app.init(svn_config);
-    } catch (IOException e) {
-      logger.log(Level.SEVERE, e.getMessage(), e);
-    }
-  }
-
   @Override
   protected void processRequest(HttpServletRequest request, HttpServletResponse response, JSONObject obj)
     throws ServletException,
