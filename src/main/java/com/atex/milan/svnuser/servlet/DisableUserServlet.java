@@ -1,17 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.atex.milan.svnuser.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 
 import com.atex.milan.svnuser.app.SvnApp;
 import com.atex.milan.svnuser.users.UserInfo;
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.json.simple.JSONObject;
 
 /**
  *
@@ -20,6 +18,11 @@ import org.json.simple.JSONObject;
 public class DisableUserServlet
         extends BaseJSONServlet
 {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+
   @Override
   protected void processRequest(HttpServletRequest request, HttpServletResponse response, JSONObject obj)
           throws ServletException,

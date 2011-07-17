@@ -1,21 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.atex.milan.svnuser.servlet;
+
+import java.io.IOException;
+import java.util.logging.Level;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 
 import com.atex.milan.svnuser.app.SvnApp;
 import com.atex.milan.svnuser.app.SvnConfiguration;
 import com.atex.milan.svnuser.users.UserInfo;
 import com.atex.milan.svnuser.utils.HTPasswdTool;
 import com.atex.milan.svnuser.utils.PWGenTool;
-import java.io.IOException;
-import java.util.logging.Level;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.json.simple.JSONObject;
 
 /**
  *
@@ -25,6 +24,11 @@ public class ResetPasswordServlet
   extends BaseJSONServlet
 {
 
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+  
   private static final String AUTHZ_PARAM = "authz";
   private static final String PASSWD_PARAM = "passwd";
   private static final String TOOLCMD_PARAM = "toolcmd";
