@@ -15,6 +15,10 @@
         <servlet-name>enableuserservlet</servlet-name>
         <servlet-class>com.atex.milan.svnuser.servlet.EnableUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>adduserservlet</servlet-name>
+        <servlet-class>com.atex.milan.svnuser.servlet.AddUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ResetPasswordServlet</servlet-name>
         <url-pattern>/resetpassword</url-pattern>
@@ -26,6 +30,10 @@
     <servlet-mapping>
         <servlet-name>enableuserservlet</servlet-name>
         <url-pattern>/enableuser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adduserservlet</servlet-name>
+        <url-pattern>/adduser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

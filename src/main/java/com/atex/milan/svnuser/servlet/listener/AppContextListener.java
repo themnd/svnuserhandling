@@ -22,7 +22,7 @@ public class AppContextListener implements ServletContextListener
   public void contextInitialized(ServletContextEvent event)
   {
     String configuration = System.getProperty("SVNUSERS_CONF");
-    logger.info("Configuration can be found in " + configuration);
+    logger.config("Configuration can be found in " + configuration);
     
     Properties properties = loadConfigurationProperties(configuration);
     if (properties != null) {

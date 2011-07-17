@@ -33,3 +33,82 @@
     font-size: 0.9em;
     text-align: center;
 }
+.clear {
+    clear: both;
+    height: 0px;
+    overflow: hidden;
+}
+/*
+taken from http://blog.brandoncash.net/post/535425221/sexy-css-toolbars
+*/
+ul.toolbar {
+  list-style-type: none;
+  margin: 0px;
+  padding: 5px 0px 5px 0px;
+  
+  background-image: -webkit-gradient(linear, left top, left bottom,
+      color-stop(0.0, rgba(255, 255, 255, 0.6)),
+      color-stop(0.5, rgba(255, 255, 255, 0.3)),
+      color-stop(0.5, rgba(255, 255, 255, 0.2)),
+      color-stop(1.0, rgba(255, 255, 255, 0.0)));
+  background-image: -moz-linear-gradient(top,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.0) 100%);
+      
+  -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+  
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  font-family: Helvetica, Arial, Sans;
+}
+ul.toolbar li {
+  display: inline-block;
+  margin: 0px;
+  padding: 3px 5px 3px 5px;
+  min-width: 100px;
+  
+  cursor: default;
+  
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-width: 1px 0px 1px 1px;
+  
+  -webkit-box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0px 0px 2px rgba(255, 255, 255, 0.25);
+  -moz-box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0px 0px 2px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0px 0px 2px rgba(255, 255, 255, 0.25);
+  
+  -webkit-transition: background 0.2s ease-in-out;
+  
+  text-shadow: rgba(0, 0, 0, 0.5) 0px -1px 0px;
+  font-size: 10pt;
+  font-weight: bold;
+}
+ul.toolbar li:first-child {
+  border-radius: 3px 0px 0px 3px;
+  -moz-border-radius: 3px 0px 0px 3px;
+}
+ul.toolbar li:last-child {
+  border-radius: 0px 3px 3px 0px;
+  -moz-border-radius: 0px 3px 3px 0px;
+  border-width: 1px;
+}
+ul.toolbar li.selected, ul.toolbar li:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+ul.toolbar li:active {
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-transition-duration: 0.0s;
+}
+ul.toolbar li.icon {
+  min-width: 0px;
+  padding-left: 30px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}

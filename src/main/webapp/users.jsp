@@ -28,19 +28,18 @@ String resetPwdLink(HttpServletResponse response, String login)
 <title>Users Page</title>
 <link rel="stylesheet" type="text/css" href="css/global.css">
 <link rel="stylesheet" type="text/css" href="css/users.css">
-<script type="text/javascript" src="js/jquery-1.3.1.min.js"></script>
+<%@include file="itf.jsp"%>
 <script type="text/javascript" src="js/users.js"></script>
 </head>
 <body>
   <%@include file="header.jsp"%>
-  <div class="editing" style="display: none">
-    <form action="#">
-      Old password: <input type="password"><br/>
-      repeat password: <input type="password"><br/>
-    </form>
-  </div>
   <div class="usersList">
 <h1>Number of users: <%=users.size()%></h1>
+  <div class="toolbar_container">
+    <ul class="toolbar" style="border-radius: 3px; -moz-border-radius: 3px; border: 1px solid rgba(0, 0, 0, 0.5);">
+      <li class="button adduser">Add user</li>
+    </ul>
+  </div>
 <ul class="users">
 <%
 for (UserInfo u: users) {
@@ -60,6 +59,23 @@ for (UserInfo u: users) {
 }
 %>
 </ul>
+  </div>
+  <div class="editing" style="display: none">
+    <form action="#">
+      Old password: <input type="password"><br/>
+      repeat password: <input type="password"><br/>
+    </form>
+  </div>
+  <div class="newuser_dialog" title="Add new user" style="display: none">
+    <form action="#">
+      Username: <input type="text" name="login" class="login"><br/>
+    </form>
+  </div>
+  <div id="dialog-message" title="Message" style="display: none">
+    <p id="dialog-message-type" class="ui-corner-all">
+      <span class="ui-icon ui-icon-info"></span>
+      <span class="msg"></span>
+    </p>
   </div>
 <%@include file="footer.jsp"%>
 </body>
