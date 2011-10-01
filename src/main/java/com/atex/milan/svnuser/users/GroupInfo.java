@@ -7,11 +7,13 @@ public class GroupInfo
 {
   private String name;
   private boolean disabled;
+  private boolean modified;
   private List<String> members;
   
   public GroupInfo()
   {
     this.disabled = false;
+    this.modified = false;
     this.members = new ArrayList<String>();
   }
   
@@ -31,9 +33,27 @@ public class GroupInfo
   {
     this.disabled = disabled;
   }
+  public boolean isModified()
+  {
+    return modified;
+  }
+  public void setModified(boolean modified)
+  {
+    this.modified = modified;
+  }
   public void addMember(String user)
   {
     members.add(user);
+    setModified(true);
+  }
+  public void delMember(String user)
+  {
+    for (String m: members) {
+      if (m.equals(user)) {
+        setModified(true);
+        members.remove(m);
+      }
+    }
   }
   public List<String> getMembers()
   {
