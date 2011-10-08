@@ -1,12 +1,15 @@
+<%@page import="com.atex.milan.svnuser.users.UserInfo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="com.atex.milan.svnuser.app.SvnApp"%>
 <%@page import="com.atex.milan.svnuser.users.AuthInfo"%>
 <%@page import="com.atex.milan.svnuser.users.GroupInfo"%>
+<%@page import="com.atex.milan.svnuser.users.UserInfo"%>
 <%
 SvnApp app = SvnApp.getInstance();
 AuthInfo info = app.getInfo();
 List<GroupInfo> groups = info.getGroups();
+List<UserInfo> users = info.getUsers();
 %>
 <!DOCTYPE html>
 <html>
@@ -15,10 +18,28 @@ List<GroupInfo> groups = info.getGroups();
 <title>Users Page</title>
 <link rel="stylesheet" type="text/css" href="css/global.css">
 <link rel="stylesheet" type="text/css" href="css/groups.css">
-<script type="text/javascript" src="js/jquery-1.3.1.min.js"></script>
+<%@include file="itf.jsp"%>
+<script type="text/javascript" src="js/groups.js"></script>
+<script type="text/javascript">
+var users = [];
+<%
+for (UserInfo u: users) {
+%>
+  users.push('<%=u.getLogin()%>');
+<%
+}
+%>
+</script>
 </head>
 <body>
 <%@include file="header.jsp"%>
+<div class="adduser_dialog ui none" title="Add user" style="display: none">
+  <form action="#">
+    new user:
+    <select id="addusers" name="users" multiple="multiple">
+    </select>
+  </form>
+</div>
 <div class="groupsList">
 <h1>Number of groups: <%=groups.size()%></h1>
 <ul class="users">
@@ -31,10 +52,16 @@ for (GroupInfo g: groups) {
 %>
 <li class="<%=groupClass%>">
 <div class="groupname">
-<%=g.getName() %>
+  <span class="gname"><%=g.getName() %></span>
   <div class="members">
+  <span class="addmember">+</span>
+  <span class="usersep">|</span>
 <% for(String m: g.getMembers()) { %>
+  <div class="umember">
   <span class="member"><%=m%></span>
+  <span class="removemember">-</span>
+  <span class="usersep">|</span>
+  </div>
 <% } %>
   </div>
 </div>

@@ -43,6 +43,8 @@ public class AppContextListener implements ServletContextListener
 
   protected Properties loadConfigurationProperties(String configuration)
   {
+    logger.info("loading configuration from " + configuration);
+    
     try {
       InputStreamReader reader = new FileReader(configuration);
       Properties prop = new Properties();

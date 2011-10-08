@@ -112,3 +112,10 @@ ul.toolbar li.icon {
   background-repeat: no-repeat;
   background-position: 10px center;
 }
+
+.ui.none {
+  display: none;
+}
+.addmember, .removemember {
+  cursor: pointer;
+}

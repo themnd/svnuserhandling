@@ -43,15 +43,20 @@ public class GroupInfo
   }
   public void addMember(String user)
   {
-    members.add(user);
-    setModified(true);
+    synchronized(members) {
+      members.add(user);
+      setModified(true);
+    }
   }
   public void delMember(String user)
   {
-    for (String m: members) {
-      if (m.equals(user)) {
-        setModified(true);
-        members.remove(m);
+    synchronized(members) {
+      for (String m: members) {
+        if (m.equals(user)) {
+          setModified(true);
+          members.remove(m);
+          break;
+        }
       }
     }
   }

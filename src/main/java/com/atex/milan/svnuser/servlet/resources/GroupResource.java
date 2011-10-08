@@ -1,6 +1,7 @@
 package com.atex.milan.svnuser.servlet.resources;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -23,6 +24,8 @@ import com.atex.milan.svnuser.users.UserInfo;
 @Produces({MediaType.APPLICATION_JSON})
 public class GroupResource
 {
+  protected static final Logger logger = Logger.getLogger(GroupResource.class.getName());
+  
   @Context UriInfo uriInfo;
   @Context Request request;
   GroupInfo group;
@@ -53,7 +56,7 @@ public class GroupResource
   @Path("addmember/{username}")
   public GroupInfo setAddMember(@PathParam("username") String username)
   {
-    System.out.println("setAddMember " + username);
+    logger.info("setAddMember " + username);
     
     if (group.getMembers().contains(username)) {
       throw new AlreadyMemberException(username);
@@ -70,7 +73,7 @@ public class GroupResource
   @Path("delmember/{username}")
   public GroupInfo setDelMember(@PathParam("username") String username)
   {
-    System.out.println("setDelMember " + username);
+    logger.info("setDelMember " + username);
     
     if (!group.getMembers().contains(username)) {
       throw new NotMemberException(username);
@@ -89,7 +92,6 @@ public class GroupResource
     AuthInfo info = app.getInfo();
     List<UserInfo> users = info.getUsers();
     for (UserInfo u: users) {
-      System.out.println("user " + u.getLogin());
       if (u.getLogin().equals(username)) {
         return u;
       }
