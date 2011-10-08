@@ -14,3 +14,22 @@
     padding-bottom: 2px;
     -moz-border-radius: 5px 5px 5px 5px;
 }
+
+.topbuttons .button {
+    border-style: dashed;
+    border-width: 1px;
+    font-size: 1em;
+    font-variant: small-caps;
+    margin-bottom: 15px;
+    margin-top: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
+}
+
+.topbuttons {
+    margin-left: 40px;s  
+}

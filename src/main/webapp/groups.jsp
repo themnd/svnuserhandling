@@ -40,8 +40,16 @@ for (UserInfo u: users) {
     </select>
   </form>
 </div>
+<div class="addgroup_dialog ui none" title="Add new group" style="display: none">
+  <form action="#">
+    Groupname: <input type="text" name="name" class="name"><br/>
+  </form>
+</div>
 <div class="groupsList">
 <h1>Number of groups: <%=groups.size()%></h1>
+<div class="topbuttons">
+  <span class="addgroup button">+ Add Group</span>
+</div>
 <ul class="users">
 <%
 for (GroupInfo g: groups) {

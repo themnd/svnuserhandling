@@ -15,6 +15,13 @@ function doAjax(url, f) {
 function doAjaxPost(url, f) {
   $.post(url, function(data) {
     processAjax(data, f)
+  }).error(function(jqXHR, textStatus, errorThrown) {
+    if (jqXHR.status == 400) {
+      var obj = jQuery.parseJSON(jqXHR.responseText)
+      alert(obj[0]);
+    } else {
+      alert(textStatus + " " + jqXHR.status + ": " + errorThrown);
+    }
   });
 }
 function getGroups(f)
@@ -40,6 +47,12 @@ function delMember(g, u, f)
   doAjaxPost(url, f, function() {
     //location.reload();    
   });
+}
+
+function newGroup(g, f)
+{
+  var url = 'resources/groups/addgroup/' + g;
+  doAjaxPost(url, f);
 }
 
 function showMsgInfo(msg)
@@ -113,4 +126,22 @@ $(document).ready(function() {
     delMember(gname, u);
     location.reload();
   })
+  $('.addgroup.button').click(function() {
+    $('.addgroup_dialog .name').val('');
+    var o = {
+        buttons: {
+          'OK': function() {
+            var name = $('.addgroup_dialog .name').val();
+            newGroup(name, function() {
+              $(this).dialog('close');
+              location.reload();              
+            });
+          },
+          'Cancel': function() {
+            $(this).dialog('close');
+          }
+        }
+    }
+    $('.addgroup_dialog').dialog(o);    
+  });
 });
