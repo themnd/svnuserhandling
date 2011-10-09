@@ -54,26 +54,22 @@ public class GroupResource
   
   @POST
   @Path("addmember/{username}")
-  public GroupInfo setAddMember(@PathParam("username") String username)
+  public GroupInfo doAddMember(@PathParam("username") String username)
   {
-    logger.info("setAddMember " + username);
+    logger.info("doAddMember " + username);
     
-    if (group.getMembers().contains(username)) {
-      throw new AlreadyMemberException(username);
+    String[] names = username.split(",");
+    for (String name: names) {
+      addMember(name);
     }
-    UserInfo u = getUser(username);
-    if (u != null) {
-      group.addMember(username);
-      return group;      
-    }
-    throw new UsernameNotValidException(username);
+    return group;      
   }
 
   @POST
   @Path("delmember/{username}")
-  public GroupInfo setDelMember(@PathParam("username") String username)
+  public GroupInfo doDelMember(@PathParam("username") String username)
   {
-    logger.info("setDelMember " + username);
+    logger.info("doDelMember " + username);
     
     if (!group.getMembers().contains(username)) {
       throw new NotMemberException(username);
@@ -84,6 +80,21 @@ public class GroupResource
       return group;      
     }
     throw new UsernameNotValidException(username);
+  }
+  
+  protected void addMember(String username)
+  {
+    logger.info("addMember " + username);
+    
+    if (group.getMembers().contains(username)) {
+      throw new AlreadyMemberException(username);
+    }
+    UserInfo u = getUser(username);
+    if (u != null) {
+      group.addMember(username);
+    } else {
+      throw new UsernameNotValidException(username);
+    }
   }
   
   protected UserInfo getUser(String username)

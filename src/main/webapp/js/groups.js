@@ -1,29 +1,3 @@
-function processAjax(data, f) {
-  if (data && data.code == 1) {
-    showMsgError(data.err);
-  } else {
-    if (f) {
-      f(data);      
-    }
-  }
-}
-function doAjax(url, f) {
-  $.getJSON(url, function(data) {
-    processAjax(data, f)
-  });
-}
-function doAjaxPost(url, f) {
-  $.post(url, function(data) {
-    processAjax(data, f)
-  }).error(function(jqXHR, textStatus, errorThrown) {
-    if (jqXHR.status == 400) {
-      var obj = jQuery.parseJSON(jqXHR.responseText)
-      alert(obj[0]);
-    } else {
-      alert(textStatus + " " + jqXHR.status + ": " + errorThrown);
-    }
-  });
-}
 function getGroups(f)
 {
   var url = 'resources/groups';
@@ -37,49 +11,18 @@ function getGroup(g, f)
 function addMember(g, u, f)
 {
   var url = 'resources/groups/' + g +'/addmember/' + u;
-  doAjaxPost(url, f, function() {
-    //location.reload();    
-  });
+  doAjaxPost(url, f);
 }
 function delMember(g, u, f)
 {
   var url = 'resources/groups/' + g +'/delmember/' + u;
-  doAjaxPost(url, f, function() {
-    //location.reload();    
-  });
+  doAjaxPost(url, f);
 }
 
 function newGroup(g, f)
 {
   var url = 'resources/groups/addgroup/' + g;
   doAjaxPost(url, f);
-}
-
-function showMsgInfo(msg)
-{
-  $('#dialog-message-type').removeClass('ui-state-error').addClass('ui-state-highlight');
-  showMsgDialog('Info', msg);
-}
-
-function showMsgError(msg)
-{
-  $('#dialog-message-type').removeClass('ui-state-highlight').addClass('ui-state-error');
-  showMsgDialog('Error', msg);
-}
-
-function showMsgDialog(title, msg)
-{
-  $('#dialog-message .msg').text(msg);
-  $('#dialog-message').dialog({
-    title: title,
-    modal: true,
-    buttons: {
-      Ok: function() {
-        $(this).dialog( "close" );
-        location.reload();
-      }
-    }
-  });
 }
 
 $(document).ready(function() {
@@ -104,12 +47,20 @@ $(document).ready(function() {
     var o = {
         buttons: {
           'OK': function() {
+            var names = '';
             var s = $('#addusers option:selected').each(function() {
               var uname = $(this).text();
-              addMember(gname, uname)
+              if (names != '') {
+                names += ',';
+              }
+              names += uname;
             });
-            $(this).dialog('close');
-            location.reload();
+            if (names != '') {
+              addMember(gname, names, function() {
+                $(this).dialog('close');
+                location.reload();                
+              })              
+            }
           },
           'Cancel': function() {
             $(this).dialog('close');
@@ -123,8 +74,9 @@ $(document).ready(function() {
     var n = $(this).parents('.groupname').find('.gname');
     var gname = n.text();
     
-    delMember(gname, u);
-    location.reload();
+    delMember(gname, u, function() {
+      location.reload();      
+    });
   })
   $('.addgroup.button').click(function() {
     $('.addgroup_dialog .name').val('');
